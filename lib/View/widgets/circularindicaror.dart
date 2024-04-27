@@ -4,7 +4,7 @@ class MyCircularProgressIndicator extends StatelessWidget {
   final double size;
   final Color color;
 
-  MyCircularProgressIndicator({super.key, this.size = 50.0, this.color = Colors.blue});
+  const MyCircularProgressIndicator({super.key, this.size = 50.0, this.color = Colors.blue});
 
   @override
   Widget build(BuildContext context) {

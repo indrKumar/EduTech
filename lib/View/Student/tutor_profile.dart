@@ -120,7 +120,7 @@ class _TutorSProfileDetailsScreenState
                             Padding(
                                 padding: EdgeInsets.only(left: 8.w),
                                 child: Text(
-                                    snapshot.data!.data.teachingExperience[1]??'',
+                                    snapshot.data!.data.teachingExperience[1],
                                     style: theme.textTheme.titleSmall))
                           ]),
                       SizedBox(height: 28.h),
@@ -415,7 +415,7 @@ class _TutorSProfileDetailsScreenState
                           showCheckmark: false,
                           labelPadding: EdgeInsets.zero,
                           label: Text(
-                            snapshot.data!.data.englishFluency ?? "0/10",
+                            snapshot.data!.data.englishFluency,
                             style: TextStyle(
                               color: appTheme.black900,
                               fontSize: 14.04444408416748,
@@ -568,7 +568,7 @@ Widget _buildOutdoorsManPo({name, pic, verify, star}) {
               // ]),
               SizedBox(height: 12.h),
               CustomRatingBar(
-                initialRating: double.parse(star.toString() ?? '0'),
+                initialRating: double.parse(star.toString()),
                 itemSize: 16,
                 color: const Color(0xFFFCD635),
               )

@@ -106,7 +106,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  /// Section Widget
   Widget _buildWelcomeArvind() {
     return SizedBox(
       height: 268,

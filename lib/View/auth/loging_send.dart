@@ -191,7 +191,7 @@ class _LoginMobileScreenState extends State<LoginMobileScreen> {
                       text: TextSpan(
                         children: [
                           TextSpan(
-                            text: "Sign in with ",
+                            text: "Sign in / Login with ",
                             style: CustomTextStyles.titleMediumcc000000Bold,
                           ),
                           TextSpan(
@@ -206,7 +206,8 @@ class _LoginMobileScreenState extends State<LoginMobileScreen> {
                     SizedBox(
                       // width: 344.h,
                       child: Text(
-                        "We’ve sent you an OTP on +91-91091 71244",
+                        "We will send an OTP on your mobile number",
+                        // "We’ve sent you an OTP on +91-91091 71244",
                         style: CustomTextStyles.titleSmallBlack900_1,
                       ),
                     ),
@@ -214,11 +215,13 @@ class _LoginMobileScreenState extends State<LoginMobileScreen> {
                     Padding(
                       padding: EdgeInsets.only(left: 4.w),
                       child: CustomTextFormField(
+                        focusNode: myFocusNode,
                         textInputType: TextInputType.number,
-                        // autofocus: false,
-                        // onFieldSubmitted: (p0) {
-                        //   myFocusNode.unfocus();
-                        // },
+                        autofocus: true,
+                        onFieldSubmitted: (p0) {
+
+                          myFocusNode.unfocus();
+                        },
                         inputFormatter: LengthLimitingTextInputFormatter(10),
                         // Inside the CustomTextFormField for phone number input
                         validator: (value) {

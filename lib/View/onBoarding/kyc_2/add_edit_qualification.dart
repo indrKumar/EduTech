@@ -7,7 +7,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../../../controllers/kyc_one/educational_qualification_controller.dart';
 import '../../../controllers/manage_screen_controller.dart';
@@ -15,6 +14,7 @@ import '../../../controllers/usertyep_controller.dart';
 import '../../../theme/custom_button_style.dart';
 import '../../../theme/custom_text_style.dart';
 import '../../../theme/theme_helper.dart';
+import '../../../utils/select_file.dart';
 import '../../widgets/circularindicaror.dart';
 import '../../widgets/custom_checkbox_button.dart';
 import '../../widgets/custom_drop_down.dart';
@@ -184,6 +184,16 @@ class _AddEditQualificationsState extends State<AddEditQualifications> {
     ),
   ];
 
+
+  void onTap() async {
+    final file = await pickFileOrTakePhoto(context);
+    if (file != null) {
+      setState(() {
+        licencePaths = file;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     print(selectedBoards);
@@ -248,7 +258,8 @@ class _AddEditQualificationsState extends State<AddEditQualifications> {
                       }
                       return null;
                     },
-                    hintText: selectedType.isEmpty?"Select Class":selectedType,
+                    hintText:
+                        selectedType.isEmpty ? "Select Class" : selectedType,
                     items: selectedClass,
                     onChanged: (value) {
                       setState(() {
@@ -271,7 +282,9 @@ class _AddEditQualificationsState extends State<AddEditQualifications> {
                       }
                       return null;
                     },
-                    hintText: selectedBoards.isEmpty ? "Select Board":selectedBoards,
+                    hintText: selectedBoards.isEmpty
+                        ? "Select Board"
+                        : selectedBoards,
                     items: selectedBoard,
                     onChanged: (value) {
                       setState(() {
@@ -294,7 +307,9 @@ class _AddEditQualificationsState extends State<AddEditQualifications> {
                       }
                       return null;
                     },
-                    hintText: selectedMediums.isEmpty ? "Select Medium":selectedMediums,
+                    hintText: selectedMediums.isEmpty
+                        ? "Select Medium"
+                        : selectedMediums,
                     items: selectedMedium,
                     onChanged: (value) {
                       setState(() {
@@ -317,7 +332,9 @@ class _AddEditQualificationsState extends State<AddEditQualifications> {
                       }
                       return null;
                     },
-                    hintText: selectedYears.isEmpty ?"Select Completed Year":selectedYears,
+                    hintText: selectedYears.isEmpty
+                        ? "Select Completed Year"
+                        : selectedYears,
                     items: selectedYear,
                     onChanged: (value) {
                       setState(() {
@@ -433,26 +450,7 @@ class _AddEditQualificationsState extends State<AddEditQualifications> {
         right: 5.w,
       ),
       child: GestureDetector(
-        onTap: () async {
-          try {
-            final image = await ImagePicker().pickImage(
-              source: ImageSource.camera,
-              imageQuality: 80,
-              maxWidth: 800,
-              maxHeight: 800,
-            );
-
-            if (image != null) {
-              setState(() {
-                licencePaths = File(image.path);
-              });
-              // Navigator.pop(context);
-            }
-          } catch (e) {
-            print("Error: $e");
-            Fluttertoast.showToast(msg: "Error occurred");
-          }
-        },
+        onTap: onTap,
         child: Container(
           height: 45,
           decoration: BoxDecoration(

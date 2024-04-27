@@ -17,6 +17,7 @@ import '../../../theme/custom_button_style.dart';
 import '../../../theme/custom_text_style.dart';
 import '../../../theme/theme_helper.dart';
 import '../../../utils/image_constant.dart';
+import '../../../utils/select_file.dart';
 import '../../widgets/custom_checkbox_button.dart';
 import '../../widgets/custom_drop_down.dart';
 import '../../widgets/custom_elevated_button.dart';
@@ -65,6 +66,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
     super.initState();
   }
 
+
   @override
   void dispose() {
     altNumberN.dispose();
@@ -78,6 +80,23 @@ class _PersonalInformationState extends State<PersonalInformation> {
     _uploadImageController.dispose();
     // TODO: implement dispose
     super.dispose();
+  }
+  void onTapPic() async {
+    final file = await pickFileOrTakePhoto(context);
+    if (file != null) {
+      setState(() {
+        licencePathsPic = file;
+      });
+    }
+  }
+  void onTapDoc() async {
+    final file = await pickFileOrTakePhoto(context);
+    if (file != null) {
+      setState(() {
+        licencePathsCertificate = file;
+        _uploadImageController.text = "Uploaded";
+      });
+    }
   }
 
   @override
@@ -144,26 +163,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
                       Padding(
                         padding: EdgeInsets.only(bottom: 2.w),
                         child: CustomIconButton(
-                          onTap: () async {
-                            try {
-                              final image = await ImagePicker().pickImage(
-                                source: ImageSource.camera,
-                                imageQuality: 80,
-                                maxWidth: 800,
-                                maxHeight: 800,
-                              );
-
-                              if (image != null) {
-                                setState(() {
-                                  licencePathsPic = File(image.path);
-                                });
-                                // Navigator.pop(context);
-                              }
-                            } catch (e) {
-                              print("Error: $e");
-                              Fluttertoast.showToast(msg: "Error occurred");
-                            }
-                          },
+                          onTap:onTapPic,
                           height: 36.h,
                           width: 36.h,
                           padding: EdgeInsets.all(6.h),
@@ -417,27 +417,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
       ),
       child: CustomTextFormField(
         controller: _uploadImageController,
-        onTap: () async {
-          try {
-            final image = await ImagePicker().pickImage(
-              source: ImageSource.camera,
-              imageQuality: 80,
-              maxWidth: 800,
-              maxHeight: 800,
-            );
-
-            if (image != null) {
-              setState(() {
-                licencePathsCertificate = File(image.path);
-                _uploadImageController.text = "Uploaded";
-              });
-              // Navigator.pop(context);
-            }
-          } catch (e) {
-            print("Error: $e");
-            Fluttertoast.showToast(msg: "Error occurred");
-          }
-        },
+        onTap: onTapDoc,
         readOnly: true,
         validator: (value) {
           if (value == null || value.isEmpty) {

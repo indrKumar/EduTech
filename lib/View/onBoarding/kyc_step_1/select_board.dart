@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/routes/transitions_type.dart';
+
 import '../../../controllers/kyc_one/kyc_controller_one.dart';
-import '../../../controllers/kyc_one/step_controller.dart';
 import '../../../theme/app_decoration.dart';
 import '../../../theme/custom_button_style.dart';
 import '../../../theme/custom_text_style.dart';
@@ -132,9 +130,24 @@ class _SelectBoardScreenState extends State<SelectBoardScreen> {
         // void Function()? onTap,
         required int index}) {
     var subCategory = kycController.subCategories[index];
-    print("CJECJN${kycController.subCategories[index].logo?.isNotEmpty}");
+    bool isSelected = kycController.selectedSubCategories.contains(subCategory);
+
+    void handleTap() {
+      setState(() {
+        if (isSelected) {
+          kycController.selectedSubCategories.remove(subCategory);
+        } else {
+          kycController.selectedSubCategories.add(subCategory);
+          // Add only one category
+          if (kycController.selectedSubCategories.length > 1) {
+            kycController.selectedSubCategories.removeWhere((item) => item != subCategory);
+          }
+        }
+      });
+    }
     return GestureDetector(
       onTap: () {
+        handleTap();
         // int newIndex = (_homeController.selectedIndex.value + 1) % _homeController.subCategories.length;
         // _homeController.selectedIndex.value = newIndex;
         subCategoryIds == null;
@@ -147,7 +160,6 @@ class _SelectBoardScreenState extends State<SelectBoardScreen> {
         if(subCategory.containSubcategory == true){
           Get.to(()=>
               SelectClass(id: subCategory.id.toString(),isParent: widget.isParent),
-
             transition: Transition.cupertino,
             duration: const Duration(milliseconds: 500),
           )?.then((value) {
@@ -213,9 +225,10 @@ class _SelectBoardScreenState extends State<SelectBoardScreen> {
   Widget _buildSubmitForReviewButton() {
     return CustomElevatedButton(
       onPressed: () {
-        // List<int> subCategoryIds = kycController.selectedSubCategories.map((subCategory) => subCategory.id).toList();
+
+        List<int> subCategoryIds = kycController.selectedSubCategories.map((subCategory) => subCategory.id).toList();
         if(widget.isParent == false){
-          kycController.addTeachingPref([subCategoryIds]).then((value) {
+          kycController.addTeachingPref(subCategoryIds).then((value) {
             if(value != null){
               if(value["is_error"] == false){
                 kycController.selectedSubCategories.clear();

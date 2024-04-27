@@ -24,15 +24,22 @@ class _UnqualifiedScreenState extends State<UnqualifiedScreen> {
     return Scaffold(
         extendBody: true,
         extendBodyBehindAppBar: true,
-        appBar: _buildAppBar(),
+        // appBar: AppBar(
+        //   backgroundColor: Colors.transparent,
+        //   leading: GestureDetector(
+        //       onTap: () {
+        //         onTapArrowLeft();
+        //       },
+        //       child: const Icon(Icons.arrow_back_ios_new)),
+        // ),
         body: Container(
             // width: SizeUtils.width,
             // height: SizeUtils.height,
             padding: EdgeInsets.only(top: 56.w),
             decoration: BoxDecoration(
                 gradient: LinearGradient(
-                    begin: Alignment(0, -0.01),
-                    end: Alignment(1.03, 1.02),
+                    begin: const Alignment(0, -0.01),
+                    end: const Alignment(1.03, 1.02),
                     colors: [appTheme.gray900, appTheme.greenA70001])),
             child: SingleChildScrollView(
                 padding: EdgeInsets.only(top: 123.w),
@@ -49,9 +56,9 @@ class _UnqualifiedScreenState extends State<UnqualifiedScreen> {
                       Align(
                           alignment: Alignment.center,
                           child: Container(
-                              margin:
-                              EdgeInsets.only(left: 38.h, right: 40.h),
-                              child: Text("You didn’t qualified for the applied categories.",
+                              margin: EdgeInsets.only(left: 38.h, right: 40.h),
+                              child: Text(
+                                  "You didn’t qualified for the applied categories.",
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   textAlign: TextAlign.center,
@@ -67,7 +74,8 @@ class _UnqualifiedScreenState extends State<UnqualifiedScreen> {
                       Container(
                           width: 289.h,
                           margin: EdgeInsets.only(left: 36.h, right: 63.h),
-                          child: Text("1. You need to work upon your\n  commnication skills.1.\n"
+                          child: Text(
+                              "1. You need to work upon your\n  commnication skills.1.\n"
                               "2. You need to work in your maths basics.",
                               maxLines: 3,
                               overflow: TextOverflow.ellipsis,
@@ -76,18 +84,6 @@ class _UnqualifiedScreenState extends State<UnqualifiedScreen> {
                       SizedBox(height: 141.w),
                       _buildSix()
                     ]))));
-  }
-
-  /// Section Widget
-  PreferredSizeWidget _buildAppBar() {
-    return CustomAppBar(
-        leadingWidth: double.maxFinite,
-        leading: AppbarLeadingImage(
-            imagePath: ImageConstant.imgArrowLeftPrimarycontainer,
-            margin: EdgeInsets.fromLTRB(21.h, 22.w, 362.h, 22.w),
-            onTap: () {
-              onTapArrowLeft();
-            }));
   }
 
   Widget _buildSix() {
@@ -107,9 +103,9 @@ class _UnqualifiedScreenState extends State<UnqualifiedScreen> {
               buttonTextStyle: CustomTextStyles.titleMediumPrimaryContainer_1),
           SizedBox(height: 17.w),
           CustomElevatedButton(
-            onPressed: () {
-              Get.to(()=>const ResultScreen());
-            },
+              onPressed: () {
+                Get.to(() => const ResultScreen());
+              },
               text: "Clear Old Date & Re-apply",
               margin: EdgeInsets.only(left: 14.h, right: 19.h),
               buttonTextStyle: CustomTextStyles.titleMediumPrimaryContainer_3),
@@ -119,6 +115,7 @@ class _UnqualifiedScreenState extends State<UnqualifiedScreen> {
 
   /// Navigates to the previous screen.
   onTapArrowLeft() {
+    print("object");
     Get.back();
   }
 }

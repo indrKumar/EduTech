@@ -4,6 +4,7 @@ import 'package:edushalaacademy/View/onBoarding/kyc_4/unqualified.dart';
 import 'package:edushalaacademy/controllers/virtual/virtual_status_controller.dart';
 import 'package:edushalaacademy/models/interview_status_model.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -38,9 +39,16 @@ class _QualifiedScreenState extends State<QualifiedScreen> {
   Widget build(BuildContext context) {
     virtualInterviewController.fetchInterviewStatusData();
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        leading: GestureDetector(
+            onTap: () {
+              onTapArrowLeft();
+            },
+            child: const Icon(Icons.arrow_back_ios_new)),
+      ),
       extendBody: true,
       extendBodyBehindAppBar: true,
-      appBar: _buildAppBar(),
       body: Obx(
         () {
           if (virtualInterviewController.interviewResponse.value.isError!) {
@@ -126,6 +134,7 @@ class _QualifiedScreenState extends State<QualifiedScreen> {
                                             children: [
                                               ListView.builder(
                                                 shrinkWrap: true,
+                                                reverse: true,
                                                 itemCount:
                                                     virtualInterviewController
                                                         .interviewResponse
@@ -261,17 +270,31 @@ class _QualifiedScreenState extends State<QualifiedScreen> {
             height: 50,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return Text(
-                    subjects?[index]!["name"].toString() ?? '',
-                    style: CustomTextStyles.labelLargeSemiBold,
-                  );
-                },
-                separatorBuilder: (context, index) {
-                  return Text(" | ",style: CustomTextStyles.labelLargeSemiBold,);
-                },
-                itemCount: 3),
+              itemBuilder: (context, index) {
+                // Reverse the index to show the list in reverse order
+                int reversedIndex = subjects.length - 1 - index;
+                // Skip the 0th index object
+                if (reversedIndex == 0) {
+                  return const SizedBox.shrink(); // Return an empty widget
+                }
+                return Text(
+                  subjects?[reversedIndex]!["name"].toString() ?? '',
+                  style: CustomTextStyles.labelLargeSemiBold,
+                );
+              },
+              separatorBuilder: (context, index) {
+                // Reverse the index to show the list in reverse order
+                int reversedIndex = subjects!.length - 1 - index;
+                // Skip the 0th index separator
+                if (reversedIndex == 0) {
+                  return const SizedBox.shrink(); // Return an empty widget
+                }
+                return Text(" | ", style: CustomTextStyles.labelLargeSemiBold);
+              },
+              itemCount: subjects!.length - 1, // Subtract 1 to skip the 0th index object
+            ),
           ),
+
           // SizedBox(height: 5.w),
           // Text(
           //   "Hindi, English, Sanskrit",
@@ -283,8 +306,10 @@ class _QualifiedScreenState extends State<QualifiedScreen> {
     );
   }
 
-  /// Navigates to the previous screen.
   onTapArrowLeft() {
+    if (kDebugMode) {
+      print("object");
+    }
     Get.back();
   }
 }

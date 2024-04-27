@@ -4,7 +4,7 @@ import '../../../theme/theme_helper.dart';
 
 // ignore: must_be_immutable
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  CustomAppBar({
+  const CustomAppBar({
     Key? key,
     this.height,
     this.styleType,
@@ -63,8 +63,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           width: double.maxFinite,
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              begin: Alignment(0.46, 0.04),
-              end: Alignment(0.51, 0.79),
+              begin: const Alignment(0.46, 0.04),
+              end: const Alignment(0.51, 0.79),
               colors: [
                 appTheme.lightBlueA400.withOpacity(0.53),
                 appTheme.lightBlueA400.withOpacity(0.53),

@@ -11,12 +11,14 @@ import 'package:edushalaacademy/View/Profile/refer_and_earn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../theme/app_decoration.dart';
 import '../../theme/custom_button_style.dart';
 import '../../theme/custom_text_style.dart';
 import '../../theme/theme_helper.dart';
 import '../../utils/image_constant.dart';
+import '../select_teacher_student.dart';
 import '../widgets/app_bar/appbar_subtitle_eight.dart';
 import '../widgets/app_bar/appbar_trailing_image.dart';
 import '../widgets/app_bar/custom_app_bar.dart';
@@ -44,7 +46,7 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Column(
           children: [
             _buildLogoutTwentySix(),
-            SizedBox(height: 19.h),
+            const SizedBox(height: 19),
             Expanded(
               child: SingleChildScrollView(
                 child: Container(
@@ -160,7 +162,7 @@ class _ProfilePageState extends State<ProfilePage> {
   /// Section Widget
   Widget _buildLogoutTwentySix() {
     return SizedBox(
-      height: 338.h,
+      height: 338,
       width: double.maxFinite,
       child: Stack(
         alignment: Alignment.bottomCenter,
@@ -169,9 +171,19 @@ class _ProfilePageState extends State<ProfilePage> {
             // height: 233.h,
             actions: [
               AppbarTrailingImage(
+                onTap: () async {
+                  SharedPreferences prefs = await SharedPreferences.getInstance();
+                  await prefs.clear();
+                  Get.offAll(SelectTeacherOrParent());
+                },
                 imagePath: ImageConstant.imgLogout26,
               ),
               AppbarSubtitleEight(
+                onTap: () async {
+                  SharedPreferences prefs = await SharedPreferences.getInstance();
+                  await prefs.clear();
+                  Get.offAll(const SelectTeacherOrParent());
+                },
                 text: "Logout",
                 margin: const EdgeInsets.symmetric(horizontal: 5),
               ),
@@ -201,7 +213,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     width: 19.w,
                     alignment: Alignment.centerRight,
                   ),
-                  SizedBox(height: 50.h),
+                  const SizedBox(height: 60),
                   Text(
                     "Sagar Shukla (Tutor)",
                     style: CustomTextStyles.titleLarge20,

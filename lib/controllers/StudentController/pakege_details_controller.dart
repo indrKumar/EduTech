@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:get/get_rx/get_rx.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../models/demo_model_st.dart';
 import '../../models/inquiry_data_model.dart';
 import '../../models/pakage_about_model.dart';
@@ -127,7 +127,7 @@ class PackageDetails extends GetxController {
     }
   }
 
-  var inquiryData = <InquiryDataModel>[].obs;
+  late InquiryDataModel _inquiryData;
 
   Future<InquiryDataModel> fetchData() async {
     var headers = {'Authorization': 'Bearer ${SharedPref.accessToken}'};
@@ -137,19 +137,25 @@ class PackageDetails extends GetxController {
       headers: headers,
     );
 
+    var data = jsonDecode(response.body);
     if (response.statusCode == 200) {
       if (kDebugMode) {
         print(response.body);
+        print(data);
       }
-      return InquiryDataModel.fromJson(json.decode(response.body));
+      _inquiryData = InquiryDataModel.fromJson(json.decode(response.body));
+      return _inquiryData;
     } else {
       if (kDebugMode) {
+        print(data);
         print(response.reasonPhrase);
       }
+      print(data);
       throw Exception('Failed to load data');
     }
   }
 
+  InquiryDataModel? get inquiryData => _inquiryData;
   var shortListedDataList = <Tutor>[].obs;
 
   Future<void> fetchShortListedDataList() async {
@@ -175,8 +181,7 @@ class PackageDetails extends GetxController {
     }
   }
 
-  Future<Profile> fetchProfileDetails(
-      {required int id}) async {
+  Future<Profile> fetchProfileDetails({required int id}) async {
     var headers = {'Authorization': 'Bearer ${SharedPref.accessToken}'};
 
     var response = await http.get(
@@ -323,23 +328,39 @@ class PackageDetails extends GetxController {
       throw Exception('An error occurred while fetching meeting details');
     }
   }
-   Future<List<StudentClassM>> fetchStudentData() async {
-    var url = Uri.parse('https://edushala.ablive.in/studentapi/studentclass/?student_id=227&type=Demo');
-    var headers = {
-      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0MTEyOTkzLCJpYXQiOjE3MTQwMjY1OTMsImp0aSI6IjQ3YjkwMWY2ZjQ4YTQ5MzdiZTVkNGExZTczYjFkYmNlIiwidXNlcl9pZCI6NzIwfQ.F9SWY3hD-54B-3HWagw8TOL2DxQnKucEvdKZILCswP4'
-    };
 
-    var response = await http.get(url, headers: headers);
+  static Future<String?> getStudentId() async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    return sp.getString(SharedPref.STUDENTID);
+  }
 
-    if (response.statusCode == 200) {
-      var jsonData = json.decode(response.body);
-      List<StudentClassM> students = [];
-      for (var item in jsonData['data']) {
-        students.add(StudentClassM.fromJson(item));
+  Future<List<StudentClassM>> fetchStudentData() async {
+    Future<String?> getStringFromSharedPreferences() async {
+      return await getStudentId();
+    }
+
+    final studentId = await getStringFromSharedPreferences();
+    print("IDDDDDDD $studentId");
+    if (studentId != null) {
+      final url = Uri.parse(
+          'https://edushala.ablive.in/studentapi/studentclass/?student_id=$studentId');
+      final headers = {
+        'Authorization': 'Bearer ${SharedPref.accessToken}',
+      };
+
+      final response = await http.get(url, headers: headers);
+
+      if (response.statusCode == 200) {
+        final jsonData = json.decode(response.body);
+        final students = (jsonData['data'] as List)
+            .map((item) => StudentClassM.fromJson(item))
+            .toList();
+        return students;
+      } else {
+        throw Exception('Failed to load student data');
       }
-      return students;
     } else {
-      throw Exception('Failed to load student data');
+      throw Exception('Student ID not found in SharedPreferences');
     }
   }
 }

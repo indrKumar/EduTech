@@ -8,13 +8,13 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
+
 import '../../../controllers/auth_controller.dart';
 import '../../../controllers/manage_screen_controller.dart';
 import '../../../controllers/usertyep_controller.dart';
 import '../../../models/dropdown_popup.dart';
 import '../../../theme/custom_button_style.dart';
 import '../../../theme/custom_text_style.dart';
-import '../../../theme/theme_helper.dart';
 import '../../../utils/image_constant.dart';
 import '../../widgets/back_card.dart';
 import '../../widgets/custom_checkbox_button.dart';
@@ -585,7 +585,7 @@ class _ParentSignUpSendOTPState extends State<ParentSignUpSendOTP> {
                       isParent: true,
                       lastName: lastNameController.text,
                       modeOfMode: tuitionModeController.text,
-                      referral: referralCodeController.text ?? "",
+                      referral: referralCodeController.text,
                     ));
                 myController.hideCircularProgress();
               } else {

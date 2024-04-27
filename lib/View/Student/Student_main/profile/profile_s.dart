@@ -8,16 +8,16 @@ import 'package:edushalaacademy/View/Profile/notifications.dart';
 import 'package:edushalaacademy/View/Profile/other_product.dart';
 import 'package:edushalaacademy/View/Profile/refer_and_earn.dart';
 import 'package:edushalaacademy/View/Student/Student_main/profile/blog_page.dart';
+import 'package:edushalaacademy/View/select_teacher_student.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../theme/app_decoration.dart';
 import '../../../../theme/custom_text_style.dart';
 import '../../../../theme/theme_helper.dart';
 import '../../../../utils/image_constant.dart';
-import '../../../widgets/app_bar/appbar_subtitle_eight.dart';
-import '../../../widgets/app_bar/appbar_trailing_image.dart';
 import '../../../widgets/app_bar/custom_app_bar.dart';
 import '../../../widgets/custom_elevated_button.dart';
 import '../../../widgets/custom_image_view.dart';
@@ -41,7 +41,7 @@ class _ProfilePageSState extends State<ProfilePageS> {
         child: Column(
           children: [
             _buildLogoutTwentySix(),
-            SizedBox(height: 19.h),
+            SizedBox(height: 30.h),
             Expanded(
               child: SingleChildScrollView(
                 child: Container(
@@ -60,12 +60,15 @@ class _ProfilePageSState extends State<ProfilePageS> {
                       _buildBlogOne(),
                       SizedBox(height: 11.h),
                       _buildNotificationTwo(),
+
+                      // SizedBox(height: 11.h),
+                      // _buildLeaderBoard(),
                       SizedBox(height: 11.h),
-                      _buildLeaderBoard(),
-                      SizedBox(height: 11.h),
-                      _buildOtherProduct(),
-                      SizedBox(height: 11.h),
+                      // _buildOtherProduct(),
+                      // SizedBox(height: 11.h),
                       _buildFeedbackOne(),
+                      SizedBox(height: 11.h),
+                      _logOut(),
                       SizedBox(height: 32.h),
                       SizedBox(
                         width: 129.w,
@@ -102,22 +105,26 @@ class _ProfilePageSState extends State<ProfilePageS> {
 
   Widget _buildLogoutTwentySix() {
     return SizedBox(
-      height: 338.h,
+      height: 310,
       width: double.maxFinite,
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [
           CustomAppBar(
-            // height: 233.h,
             actions: [
-              AppbarTrailingImage(
-                imagePath: ImageConstant.imgLogout26,
+              CustomImageView(
+                onTap: () {
+                  Get.to(() => const EditProfileScreen());
+                },
+                color: Colors.white,
+                imagePath: ImageConstant.imgEdit2,
+                height: 19,
+                width: 19,
+                alignment: Alignment.centerRight,
               ),
-              AppbarSubtitleEight(
-                text: "Logout",
-                margin: const EdgeInsets.symmetric(horizontal: 5),
-              ),
-              10.h.horizontalSpace,
+              const SizedBox(
+                width: 30,
+              )
             ],
             styleType: Style
                 .bgGradientnamelightblueA400opacity053namelightblueA400opacity053,
@@ -125,27 +132,17 @@ class _ProfilePageSState extends State<ProfilePageS> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 10.w),
-              padding: EdgeInsets.all(11.h),
+              margin: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.all(11),
               decoration: AppDecoration.outlineBlack90018.copyWith(
                 borderRadius: BorderRadiusStyle.roundedBorder10,
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  CustomImageView(
-                    onTap: () {
-                      Get.to(()=>const EditProfileScreen());
-                    },
-                    color: const Color(0XFF01A0E2),
-                    imagePath: ImageConstant.imgEdit2,
-                    height: 19.h,
-                    width: 19.w,
-                    alignment: Alignment.centerRight,
-                  ),
-                  SizedBox(height: 50.h),
+                  const SizedBox(height: 50),
                   Text(
-                    "Sagar Shukla (Tutor)",
+                    "Sagar Shukla",
                     style: CustomTextStyles.titleLarge20,
                   ),
                   SizedBox(height: 10.h),
@@ -159,31 +156,35 @@ class _ProfilePageSState extends State<ProfilePageS> {
                       children: [
                         _buildThree(
                           dynamicText: "3",
-                          dynamicText1: "Students",
+                          dynamicText1: "Total Students",
                         ),
+                        SizedBox(width: 10,),
                         _buildThree(
                           dynamicText: "1567",
-                          dynamicText1: "Classes",
+                          dynamicText1: "Total Classes",
                         ),
+                        SizedBox(width: 10,),
+
                         _buildThree(
                           dynamicText: "3",
-                          dynamicText1: "Years",
+                          dynamicText1: "Years on EduShala",
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(height: 13.h),
+                  const SizedBox(height: 13),
                 ],
               ),
             ),
           ),
           Positioned(
-            top: 25.h,
-
+            top: 30,
             child: CircleAvatar(
-
               radius: 50,
-              child: Image(image: AssetImage(ImageConstant.imgUntitled51)),
+              child: Image(
+                image: AssetImage(ImageConstant.imgUntitled51),
+                fit: BoxFit.fill,
+              ),
             ),
           ),
         ],
@@ -191,10 +192,7 @@ class _ProfilePageSState extends State<ProfilePageS> {
     );
   }
 
-
-
-
-  Widget _buildEduShalaGuide(title,icon,void Function() onTap) {
+  Widget _buildEduShalaGuide(title, icon, void Function() onTap) {
     return Expanded(
       child: CustomElevatedButton(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -218,7 +216,6 @@ class _ProfilePageSState extends State<ProfilePageS> {
     );
   }
 
-
   Widget _buildEduShalaGuide1() {
     return SizedBox(
       height: 100,
@@ -230,11 +227,13 @@ class _ProfilePageSState extends State<ProfilePageS> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                _buildEduShalaGuide("Support",ImageConstant.imgSupport11LightBlueA400,() {
-                  Get.to(()=>const ContactUsScreen());
+                _buildEduShalaGuide(
+                    "Support", ImageConstant.imgSupport11LightBlueA400, () {
+                  Get.to(() => const ContactUsScreen());
                 }),
-                _buildEduShalaGuide("EduShala Guide",ImageConstant.imgVideo1,() {
-                  Get.to(()=>const GuideScreen());
+                _buildEduShalaGuide("EduShala Guide", ImageConstant.imgVideo1,
+                    () {
+                  Get.to(() => const GuideScreen());
                 }),
               ],
             ),
@@ -243,11 +242,12 @@ class _ProfilePageSState extends State<ProfilePageS> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                _buildEduShalaGuide("FAQ’s",ImageConstant.imgFaq1,() {
-                  Get.to(()=>const FaqScreen());
+                _buildEduShalaGuide("FAQ’s", ImageConstant.imgFaq1, () {
+                  Get.to(() => const FaqScreen());
                 }),
-                _buildEduShalaGuide("Refer & Earn",ImageConstant.imgShare21,() {
-                  Get.to(()=>const ReferAndEarnScreen());
+                _buildEduShalaGuide("Refer & Earn", ImageConstant.imgShare21,
+                    () {
+                  Get.to(() => const ReferAndEarnScreen());
                 }),
               ],
             ),
@@ -257,7 +257,7 @@ class _ProfilePageSState extends State<ProfilePageS> {
     );
   }
 
- Widget _buildBugOne() {
+  Widget _buildBugOne() {
     return Container(
       padding: EdgeInsets.all(11.w),
       decoration: AppDecoration.fillGray.copyWith(
@@ -301,7 +301,7 @@ class _ProfilePageSState extends State<ProfilePageS> {
   Widget _buildBlogOne() {
     return GestureDetector(
       onTap: () {
-        Get.to(()=>const BlogPage());
+        Get.to(() => const BlogPage());
       },
       child: Container(
         padding: EdgeInsets.symmetric(
@@ -335,7 +335,7 @@ class _ProfilePageSState extends State<ProfilePageS> {
                 style: theme.textTheme.bodyMedium,
               ),
             ),
-            Spacer(),
+            const Spacer(),
             CustomImageView(
               color: const Color(0xFF00C2FF),
               imagePath: ImageConstant.imgArrowRightLightBlueA400,
@@ -356,7 +356,7 @@ class _ProfilePageSState extends State<ProfilePageS> {
   Widget _buildNotificationTwo() {
     return GestureDetector(
       onTap: () {
-        Get.to(()=>const OtherProductsScreen());
+        Get.to(() => const OtherProductsScreen());
       },
       child: Container(
         padding: EdgeInsets.symmetric(
@@ -382,7 +382,7 @@ class _ProfilePageSState extends State<ProfilePageS> {
                 bottom: 2.h,
               ),
               child: Text(
-                "Other Product",
+                "Notifications",
                 style: theme.textTheme.bodyMedium,
               ),
             ),
@@ -401,11 +401,13 @@ class _ProfilePageSState extends State<ProfilePageS> {
         ),
       ),
     );
-  } /// Section Widget
+  }
+
+  /// Section Widget
   Widget _buildLeaderBoard() {
     return GestureDetector(
       onTap: () {
-        Get.to(()=>const LeaderboardsScreen());
+        Get.to(() => const LeaderboardsScreen());
       },
       child: Container(
         padding: EdgeInsets.symmetric(
@@ -451,10 +453,11 @@ class _ProfilePageSState extends State<ProfilePageS> {
       ),
     );
   }
+
   Widget _buildOtherProduct() {
     return GestureDetector(
       onTap: () {
-        Get.to(()=>const NotificationsScreen());
+        Get.to(() => const NotificationsScreen());
       },
       child: Container(
         padding: EdgeInsets.symmetric(
@@ -504,7 +507,7 @@ class _ProfilePageSState extends State<ProfilePageS> {
   Widget _buildFeedbackOne() {
     return GestureDetector(
       onTap: () {
-        Get.to(()=>const FeedbackScreen());
+        Get.to(() => const FeedbackScreen());
       },
       child: Container(
         padding: EdgeInsets.symmetric(
@@ -556,40 +559,105 @@ class _ProfilePageSState extends State<ProfilePageS> {
     );
   }
 
+  Widget _logOut() {
+    return GestureDetector(
+      onTap: () async {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.clear();
+        Get.offAll(const SelectTeacherOrParent());
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: 11.w,
+          vertical: 6.h,
+        ),
+        decoration: AppDecoration.fillGray.copyWith(
+          borderRadius: BorderRadiusStyle.roundedBorder7,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CustomImageView(
+              color: const Color(0xFF00C2FF),
+              imagePath: ImageConstant.imgLogout26,
+              height: 27.h,
+              width: 27.w,
+              margin: EdgeInsets.only(
+                left: 5.w,
+                top: 2.h,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                left: 14.w,
+                top: 5.h,
+                bottom: 6.h,
+              ),
+              child: Text(
+                "Logout",
+                style: theme.textTheme.bodyMedium,
+              ),
+            ),
+            const Spacer(),
+            CustomImageView(
+              color: const Color(0xFF00C2FF),
+              imagePath: ImageConstant.imgArrowRightLightBlueA400,
+              height: 12.h,
+              width: 7.w,
+              margin: EdgeInsets.only(
+                top: 9.h,
+                bottom: 8.h,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _buildThree({
     required String dynamicText,
     required String dynamicText1,
   }) {
-    return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: 24.w,
-        vertical: 16.h,
-      ),
-      decoration: AppDecoration.outlineBlack90019.copyWith(
-        borderRadius: BorderRadiusStyle.roundedBorder7,
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            dynamicText,
-            style: CustomTextStyles.titleLargeInterPrimaryContainer.copyWith(
-              color: theme.colorScheme.primaryContainer.withOpacity(1),
-            ),
-          ),
-          SizedBox(height: 5.h),
-          Align(
-            alignment: Alignment.centerRight,
-            child: Text(
-              dynamicText1,
-              style: CustomTextStyles.bodyMediumPrimaryContainer.copyWith(
-                color: theme.colorScheme.primaryContainer.withOpacity(1),
+    return Expanded(
+      child: Container(
+        height: 100,
+        padding: const EdgeInsets.symmetric(
+          // vertical: 16.h,
+
+        ),
+
+        decoration: AppDecoration.outlineBlack90019.copyWith(
+          borderRadius: BorderRadiusStyle.roundedBorder7,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Flexible(
+              child: Text(
+                dynamicText,
+                style: CustomTextStyles.titleLargeInterPrimaryContainer.copyWith(
+                  color: theme.colorScheme.primaryContainer.withOpacity(1),
+                ),
               ),
             ),
-          ),
-        ],
+            SizedBox(height: 5.h),
+            SizedBox(
+              child: Text(
+                dynamicText1,
+                style: CustomTextStyles.bodyMediumPrimaryContainer.copyWith(
+                  color: theme.colorScheme.primaryContainer.withOpacity(1),
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
+
 }

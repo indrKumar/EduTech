@@ -1,14 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:edushalaacademy/View/Student/contact_us_counsller.dart';
 import 'package:edushalaacademy/View/Student/pakage_details_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../theme/app_decoration.dart';
 import '../../theme/custom_button_style.dart';
-import '../../theme/custom_text_style.dart';
 import '../../utils/image_constant.dart';
 import '../widgets/custom_elevated_button.dart';
 import '../widgets/custom_image_view.dart';

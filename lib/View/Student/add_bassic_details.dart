@@ -296,6 +296,7 @@ class _AddBasicDetailsState extends State<AddBasicDetails> {
                   subjects: subCategoryIds,
                   time: _timeController.text)
               .then((value) {
+                print(subCategoryIds[0]);
             print(value);
             if (value["is_error"] == false) {
               Fluttertoast.showToast(msg: "Added Successfully");
@@ -312,7 +313,7 @@ class _AddBasicDetailsState extends State<AddBasicDetails> {
 
   Future<void> onTapDateOfBirth() async {
     DateTime selectedDate = DateTime.now(); // Initialize with current date
-    DateTime? dateTime = await showDatePicker(
+     await showDatePicker(
             context: Get.context!,
             initialDate: DateTime.now(),
             firstDate: DateTime(1970),

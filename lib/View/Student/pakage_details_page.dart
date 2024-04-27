@@ -615,18 +615,20 @@ class _PackageDetailsPageState extends State<PackageDetailsPage> {
                         .packageDetails.value[isSelected].id)
                         .then((value) {
                       Map<String, dynamic> response = jsonDecode(value);
-                      print(response);
+                      if (kDebugMode) {
+                        print(response);
+                      }
                       if (response["is_error"] != null &&
                           response["is_error"] == false) {
                         Fluttertoast.showToast(msg: response["message"]);
-                        Get.to(() => const PendingInquiries());
+                        Get.offAll(() => const PendingInquiries());
                       } else {
                         String errorMessage =
                             response["message"] ?? "An error occurred";
                         Fluttertoast.showToast(msg: errorMessage);
                       }
                     });
-                    Get.to(()=>const PendingInquiries());
+                    // Get.to(()=>const PendingInquiries());
                   },
                   text: "Select",
                   // buttonStyle: CustomButtonStyles.none,

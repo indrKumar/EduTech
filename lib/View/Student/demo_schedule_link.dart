@@ -1,6 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../controllers/StudentController/pakege_details_controller.dart';
@@ -35,6 +35,11 @@ class _DemoScheduleLinkState extends State<DemoScheduleLink> {
       throw 'Could not launch $url';
     }
   }
+  Future<void> _launchUrl(_url) async {
+    if (!await launchUrl(_url)) {
+      throw Exception('Could not launch $_url');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,11 +49,13 @@ class _DemoScheduleLinkState extends State<DemoScheduleLink> {
         future: _meetingDetails,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: MyCircularProgressIndicator());
+            return const Center(child: MyCircularProgressIndicator());
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else {
-            print(snapshot.data!.name,);
+            if (kDebugMode) {
+              print(snapshot.data!.name,);
+            }
             return SizedBox(
               width: double.maxFinite,
               child: SingleChildScrollView(
@@ -71,39 +78,16 @@ class _DemoScheduleLinkState extends State<DemoScheduleLink> {
                         alignment: Alignment.centerRight,
                       ),
                       SizedBox(height: 37.h),
-                      SizedBox(
-                        height: 45.h,
-                        width: 229.w,
-                        child: Stack(
-                          alignment: Alignment.topLeft,
-                          children: [
-                            // Align(
-                            //   alignment: Alignment.center,
-                            //   child: SizedBox(
-                            //     width: 228.w,
-                            //     child: Text(
-                            //       "Your demo class has been scheduled with our Tutor",
-                            //       maxLines: 2,
-                            //       overflow: TextOverflow.ellipsis,
-                            //       textAlign: TextAlign.center,
-                            //       style:
-                            //       CustomTextStyles.titleMediumPrimaryContainer,
-                            //     ),
-                            //   ),
-                            // ),
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: SizedBox(
-                                child: Text(
-                                  "Your demo class has been scheduled with our Tutor",
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  textAlign: TextAlign.center,
-                                  style: CustomTextStyles.titleMedium16,
-                                ),
-                              ),
-                            ),
-                          ],
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: SizedBox(
+                          child: Text(
+                            "Your demo class has been scheduled with our Tutor",
+                            // maxLines: 2,
+                            // overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.center,
+                            style: CustomTextStyles.titleMedium16,
+                          ),
                         ),
                       ),
                       SizedBox(height: 36.h),
@@ -143,12 +127,12 @@ class _DemoScheduleLinkState extends State<DemoScheduleLink> {
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                              Text(
-                                              snapshot.data!.name,
+                                              snapshot.data!.name.toString(),
                                               // style: CustomTextStyles.titleMediumSemiBold_1,
                                             ),
                                             SizedBox(height: 4.h),
                                              Text(
-                                                snapshot.data!.designation,
+                                                snapshot.data!.designation.toString(),
                                               // style: CustomTextStyles.titleSmallBlack900SemiBold,
                                             ),
                                             SizedBox(height: 6.h),
@@ -271,7 +255,7 @@ class _DemoScheduleLinkState extends State<DemoScheduleLink> {
                               child: CustomTextFormField(
                                 onTap: () {
                                     copyTextToClipboard(
-                                        snapshot.data!.link);
+                                        snapshot.data!.link.toString());
                                 },
                                 readOnly: true,
                                 hintText: snapshot.data!.link,
@@ -298,7 +282,7 @@ class _DemoScheduleLinkState extends State<DemoScheduleLink> {
                                     color: Color(0xFFA0A0A0),
                                     fontFamily: "Montserrat"),
                               ),
-                              Text(snapshot.data!.location.toString(),style: TextStyle(fontSize: 14),)
+                              Text(snapshot.data!.location.toString(),style: const TextStyle(fontSize: 14),)
 
                          ],),
                          if(snapshot.data!.mode == "Online") Container(
@@ -316,7 +300,10 @@ class _DemoScheduleLinkState extends State<DemoScheduleLink> {
                                   SizedBox(height: 3.h),
                                   CustomElevatedButton(
                                     onPressed: () {
-                                      launchMeetingLink(snapshot.data!.link);
+                                      _launchUrl(Uri.parse(snapshot.data!.link.toString()
+                                          )).then((value){
+                                        // Get.to(() => const Kyc_Step_Four_Vidio());
+                                      });
                                     },
                                     text: "Join Now",
                                   ),

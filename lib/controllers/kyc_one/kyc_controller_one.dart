@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:camera/camera.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 

@@ -16,7 +16,7 @@ class LeadsAll extends StatefulWidget {
 
 class _LeadsAllState extends State<LeadsAll> {
   // bool _isExpanded = false;
-  final List<bool> _isExpandedList = List.filled(5, false);
+  final List<bool> _isExpandedList = List.filled(5, false,);
 
   void _toggleExpanded(int index) {
     setState(() {

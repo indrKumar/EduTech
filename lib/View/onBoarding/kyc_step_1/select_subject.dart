@@ -13,7 +13,6 @@ import '../../../theme/theme_helper.dart';
 import '../../../utils/image_constant.dart';
 import '../../widgets/custom_elevated_button.dart';
 import '../../widgets/custom_image_view.dart';
-import 'kyc_spep_one.dart';
 
 class SelectSubjectPage extends StatefulWidget {
   String? id;
@@ -74,11 +73,11 @@ class _SelectSubjectPageState extends State<SelectSubjectPage> {
                       color: const Color(0XFF01A0E2),
                       backgroundColor: const Color(0xFFE6E6E6),
                       value:
-                      0.100,
+                      1,
                     ),
                     SizedBox(height: 41.h),
                     Text(
-                      kycController.message ?? "Select Subjects (Multiple)",
+                      kycController.message,
                       style: theme.textTheme.headlineMedium,
                     ),
                     SizedBox(height: 5.h),
@@ -219,7 +218,7 @@ class _SelectSubjectPageState extends State<SelectSubjectPage> {
             SizedBox(height: 10.h),
 
             Text(
-              subCategory.name ?? '',
+              subCategory.name,
               style: CustomTextStyles.titleSmallBluegray80001,
             ),
             // SizedBox(height: 30.w),

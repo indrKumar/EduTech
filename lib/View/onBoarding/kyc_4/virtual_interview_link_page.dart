@@ -2,12 +2,11 @@ import 'package:edushalaacademy/View/onBoarding/kyc_4/kyc_spep_one.dart';
 import 'package:edushalaacademy/View/widgets/circularindicaror.dart';
 import 'package:edushalaacademy/models/vertual_details_models.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 import '../../../controllers/virtual/virtualcontroller.dart';
 import '../../../theme/app_decoration.dart';
 import '../../../theme/custom_text_style.dart';

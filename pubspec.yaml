@@ -62,7 +62,7 @@ dependencies:
   easy_pie_chart: ^1.0.0
   flutter_calendar_carousel:
   http: ^1.2.0
-  image_picker: ^1.0.7
+  image_picker: ^1.1.1
   geocoding: ^3.0.0
   location: ^5.0.3
   geolocator: ^11.0.0
@@ -74,6 +74,8 @@ dependencies:
   bulleted_list: ^0.0.1+0.1a
   google_maps_flutter: ^2.5.3
   permission_handler: ^11.3.1
+  dio: ^5.4.3+1
+  file_picker: ^8.0.3
 
 dev_dependencies:
   flutter_test:

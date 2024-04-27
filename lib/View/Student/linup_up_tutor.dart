@@ -1,18 +1,16 @@
 import 'package:edushalaacademy/View/Student/tutor_profile.dart';
 import 'package:edushalaacademy/View/widgets/student/approveandrej.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 import '../../controllers/StudentController/pakege_details_controller.dart';
 import '../../models/dropdown_popup.dart';
 import '../../theme/app_decoration.dart';
 import '../../theme/custom_text_style.dart';
 import '../../theme/theme_helper.dart';
-import '../../utils/store_local_data.dart';
-import '../widgets/custom_drop_down.dart';
 import '../widgets/custom_elevated_button.dart';
 import '../widgets/custom_text_form_field.dart';
 
@@ -221,7 +219,9 @@ class _LinedUpTutorsScreenState extends State<LinedUpTutorsScreen> {
                                 Fluttertoast.showToast(msg: "Internal issue");
                               }
                             }
-                            print(value);
+                            if (kDebugMode) {
+                              print(value);
+                            }
                           });
                         },
                       ),
@@ -255,14 +255,12 @@ class _LinedUpTutorsScreenState extends State<LinedUpTutorsScreen> {
           Padding(
             padding: EdgeInsets.only(right: 10.w),
             child: _buildOutdoorsManPo(
-              img: controller.shortListedDataList[index].profilePic ?? '',
-              abhishekMalviya: controller.shortListedDataList[index].name ?? '',
+              img: controller.shortListedDataList[index].profilePic,
+              abhishekMalviya: controller.shortListedDataList[index].name,
               bTechMCAHindi:
-                  controller.shortListedDataList[index].education.join(", ") ??
-                      "B. Tech, MCA",
+                  controller.shortListedDataList[index].education.join(", "),
               subjects:
-                  controller.shortListedDataList[index].teaches.join(", ") ??
-                      "B. Tech, MCA",
+                  controller.shortListedDataList[index].teaches.join(", "),
             ),
           ),
           SizedBox(height: 12.h),

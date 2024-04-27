@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import '../../../controllers/kyc_one/kyc_controller_one.dart';
-import '../../../controllers/kyc_one/step_controller.dart';
 import '../../../theme/app_decoration.dart';
 import '../../../theme/custom_button_style.dart';
 import '../../../theme/custom_text_style.dart';
@@ -28,7 +26,7 @@ class SelectClass extends StatefulWidget {
 }
 
 class _SelectClassState extends State<SelectClass> {
-  final StepController _homeController = Get.put(StepController());
+  // final StepController _homeController = Get.put(StepController());
   int currentIndex = -1;
   final KycControllerOne kycController = Get.put(KycControllerOne());
 
@@ -81,7 +79,7 @@ class _SelectClassState extends State<SelectClass> {
                   ),
                   SizedBox(height: 41.h),
                   Text(
-                    kycController.message ?? "",
+                    kycController.message,
                     style: theme.textTheme.headlineMedium,
                   ),
                   SizedBox(height: 5.h),
@@ -142,9 +140,24 @@ class _SelectClassState extends State<SelectClass> {
       // void Function()? onTap,
       required int index}) {
     var subCategory = kycController.subCategories[index];
-    print("CJECJN${kycController.subCategories[index].logo?.isNotEmpty}");
+    bool isSelected = kycController.selectedSubCategories.contains(subCategory);
+
+    void handleTap() {
+      setState(() {
+        if (isSelected) {
+          kycController.selectedSubCategories.remove(subCategory);
+        } else {
+          kycController.selectedSubCategories.add(subCategory);
+          // Add only one category
+          if (kycController.selectedSubCategories.length > 1) {
+            kycController.selectedSubCategories.removeWhere((item) => item != subCategory);
+          }
+        }
+      });
+    }
     return GestureDetector(
       onTap: () {
+        handleTap();
         // int newIndex = (_homeController.selectedIndex.value + 1) % _homeController.subCategories.length;
         // _homeController.selectedIndex.value = newIndex;
         subCategoryIds == null;

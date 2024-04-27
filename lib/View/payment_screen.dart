@@ -96,30 +96,30 @@ class _PaymentScreenState extends State<PaymentScreen> {
                               Text("Student",
                                   style: CustomTextStyles
                                       .labelLargePrimaryContainerSemiBold_1),
-                              Spacer(flex: 59),
+                              const Spacer(flex: 59),
                               Text("Pay",
                                   style: CustomTextStyles
                                       .labelLargePrimaryContainerSemiBold_1),
-                              Spacer(flex: 40),
+                              const Spacer(flex: 40),
                               Text("Graph Title",
                                   style: CustomTextStyles
                                       .labelLargePrimaryContainerSemiBold_1)
                             ]))),
-                    SizedBox(height: 19),
+                    const SizedBox(height: 19),
                     Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
                         child: _buildShivamBhargav(
                             shivamBhargav: "Arvind KumarPandey",
                             rsCounter: "Rs 4200")),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
                         child: _buildShivamBhargav(
                             shivamBhargav: "Shivam Bhargav",
                             rsCounter: "Rs 4200")),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
                         child: _buildShivamBhargav(
                             shivamBhargav: "Mahima Dubey",
                             rsCounter: "Rs 4200")),
@@ -145,7 +145,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                               alignment: Alignment.topRight,
                               child: Padding(
                                   padding:
-                                  EdgeInsets.only(top: 23, right: 27),
+                                  const EdgeInsets.only(top: 23, right: 27),
                                   child: Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       crossAxisAlignment:
@@ -158,7 +158,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                             "Classes completed for your next earning"),
                                         Padding(
                                             padding:
-                                            EdgeInsets.only(left: 11),
+                                            const EdgeInsets.only(left: 11),
                                             child: SizedBox(
                                                 height: 67,
                                                 child: VerticalDivider(
@@ -170,7 +170,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                                     indent: 7,
                                                     endIndent: 2))),
                                         Padding(
-                                            padding: EdgeInsets.only(
+                                            padding: const EdgeInsets.only(
                                                 left: 15, top: 6),
                                             child: _buildEightyTwo(
                                                 eightyTwo: "82%",
@@ -185,8 +185,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
   /// Section Widget
   Widget _buildAnkitShuklaTwo() {
     return Container(
-        margin: EdgeInsets.symmetric(horizontal: 4),
-        padding: EdgeInsets.symmetric(horizontal: 13, vertical: 11),
+        margin: const EdgeInsets.symmetric(horizontal: 4),
+        padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 11),
         decoration: AppDecoration.fillPrimary2
             .copyWith(borderRadius: BorderRadiusStyle.roundedBorder7),
         child: Column(
@@ -195,7 +195,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-                  padding: EdgeInsets.only(right: 7),
+                  padding: const EdgeInsets.only(right: 7),
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -203,7 +203,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         Text("Ankit Shukla + 2",
                             style: CustomTextStyles.labelLargeBlack900SemiBold),
                         Padding(
-                            padding: EdgeInsets.symmetric(vertical: 4),
+                            padding: const EdgeInsets.symmetric(vertical: 4),
                             child: Container(
                                 height: 6,
                                 width: 140,
@@ -222,9 +222,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                         AlwaysStoppedAnimation<Color>(
                                             theme.colorScheme.primary)))))
                       ])),
-              SizedBox(height: 23),
+              const SizedBox(height: 23),
               Padding(
-                  padding: EdgeInsets.only(right: 7),
+                  padding: const EdgeInsets.only(right: 7),
                   child: _buildZipcode(
                       zipcodeText: "4800",
                       totalPaymentForText: "Total Payment for assigned hours",
@@ -287,7 +287,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                         AlwaysStoppedAnimation<Color>(
                                             theme.colorScheme.primary)))))
                       ])),
-              SizedBox(height: 23),
+              const SizedBox(height: 23),
               Padding(
                   padding: EdgeInsets.only(right: 7),
                   child:_buildZipcode(
@@ -334,7 +334,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           color: theme.colorScheme.primaryContainer
                               .withOpacity(1)))),
               Padding(
-                  padding: EdgeInsets.only(left: 12, top: 1),
+                  padding: const EdgeInsets.only(left: 12, top: 1),
                   child: Text(rsCounter,
                       style: CustomTextStyles
                           .titleSmallPrimaryContainerSemiBold_1
@@ -371,13 +371,13 @@ class _PaymentScreenState extends State<PaymentScreen> {
   }) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Padding(
-          padding: EdgeInsets.only(left: 16),
+          padding: const EdgeInsets.only(left: 16),
           child: Text(eightyTwo,
               style: CustomTextStyles.titleLargePrimaryContainerSemiBold
                   .copyWith(
                   color:
                   theme.colorScheme.primaryContainer.withOpacity(1)))),
-      SizedBox(height: 14),
+      const SizedBox(height: 14),
       SizedBox(
           width: 83,
           child: Text(classesCompleted,
@@ -401,8 +401,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
     return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
       Expanded(
           child: Container(
-              margin: EdgeInsets.only(right: 5),
-              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 11),
+              margin: const EdgeInsets.only(right: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 11),
               decoration: AppDecoration.outlineBlack9007
                   .copyWith(borderRadius: BorderRadiusStyle.roundedBorder10),
               child: Column(
@@ -414,7 +414,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         child: Text(zipcodeText,
                             style: CustomTextStyles.titleLargeLightblueA400
                                 .copyWith(color: appTheme.lightBlueA400))),
-                    SizedBox(height: 7),
+                    const SizedBox(height: 7),
                     SizedBox(
                         width: 71,
                         child: Text(totalPaymentForText,
@@ -426,8 +426,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   ]))),
       Expanded(
           child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 5),
-              padding: EdgeInsets.symmetric(horizontal: 21, vertical: 11),
+              margin: const EdgeInsets.symmetric(horizontal: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 21, vertical: 11),
               decoration: AppDecoration.outlineBlack9007
                   .copyWith(borderRadius: BorderRadiusStyle.roundedBorder10),
               child: Column(
@@ -436,14 +436,14 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                        padding: EdgeInsets.only(left: 2),
+                        padding: const EdgeInsets.only(left: 2),
                         child: Text(hoursCompletedText,
                             style: CustomTextStyles.titleLargeLightblueA400
                                 .copyWith(color: appTheme.lightBlueA400))),
-                    SizedBox(height: 7),
+                    const SizedBox(height: 7),
                     Container(
                         width: 46,
-                        margin: EdgeInsets.only(left: 2),
+                        margin: const EdgeInsets.only(left: 2),
                         child: Text(totalHoursCompletedText,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
@@ -453,15 +453,15 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   ]))),
       Expanded(
           child: Container(
-              margin: EdgeInsets.only(left: 5),
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 11),
+              margin: const EdgeInsets.only(left: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 11),
               decoration: AppDecoration.outlineBlack9007
                   .copyWith(borderRadius: BorderRadiusStyle.roundedBorder10),
               child: Column(mainAxisSize: MainAxisSize.min, children: [
                 Text(paymentAsPerHourText,
                     style: CustomTextStyles.titleLargeLightblueA400
                         .copyWith(color: appTheme.lightBlueA400)),
-                SizedBox(height: 7),
+                const SizedBox(height: 7),
                 SizedBox(
                     width: 65,
                     child: Text(paymentAsPerHourCompletedText,

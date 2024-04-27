@@ -31,7 +31,7 @@ final Kyc2StatusController kycOneController = Get.put(Kyc2StatusController());
 
 class _RecordMainState extends State<RecordMain> {
   get myIcon => null;
-  bool _isObscure = true;
+  // bool _isObscure = true;
   final globalKey = GlobalKey<ScaffoldState>();
 
   int ellipseState = 0;
@@ -40,7 +40,6 @@ class _RecordMainState extends State<RecordMain> {
   bool _isVisible_beforeRec = true;
   bool _isVisible_ellipse = true;
   bool _isVisible_endEllipse = false;
-  bool _isVisible_afterVideoOptions = false;
 
   String? filePath;
   bool _isRecording = false;
@@ -143,7 +142,6 @@ class _RecordMainState extends State<RecordMain> {
       _isVisible_recordTime = false;
       _isVisible_ellipse = true;
       _isVisible_endEllipse = false;
-      _isVisible_afterVideoOptions = true;
     });
     _stopVideoRecording();
     print('Video Ended');
@@ -165,7 +163,6 @@ class _RecordMainState extends State<RecordMain> {
     setState(() {
       _isVisible_recordTime = false;
       _isVisible_ellipse = false;
-      _isVisible_afterVideoOptions = true;
     });
     _stopVideoRecording();
     print('End recording...');

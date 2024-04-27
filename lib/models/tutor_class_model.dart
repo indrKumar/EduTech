@@ -10,17 +10,21 @@ class TutorClass {
   final String? type;
   final String? startTime;
   final String? endTime;
+  final int? numberOfSession;
+  final List? days;
+  final int? sessionPerMonth;
+  final int? hours;
+  final int? duration;
   final String? mode;
-  var days;
-  final int? hour;
+  final String? start_date;
   final String? status;
   final String? createdOn;
-
-  // final List<StudentData> studentData;
+  final List<StudentData>? studentData;
 
   TutorClass({
     required this.id,
     this.name,
+    this.start_date,
     this.state,
     this.city,
     this.location,
@@ -30,12 +34,15 @@ class TutorClass {
     this.type,
     this.startTime,
     this.endTime,
-    this.mode,
+    this.numberOfSession,
     this.days,
-    this.hour,
+    this.sessionPerMonth,
+    this.hours,
+    this.duration,
+    this.mode,
     this.status,
     this.createdOn,
-    // required this.studentData,
+    this.studentData,
   });
 
   factory TutorClass.fromJson(Map<String, dynamic> json) {
@@ -51,44 +58,58 @@ class TutorClass {
       type: json['type']??'',
       startTime: json['start_time']??'',
       endTime: json['end_time']??'',
-      mode: json['mode']??'',
-      status: json['status']??'',
-      days: json["days"]??'',
-      hour: json["hour"] ?? 0,
-      createdOn: json['Created_ON']??'',
-      //   studentData: (json['student_data'])
-      //       .map((data) => StudentData.fromJson(data))
-      //       .toList(),
+      numberOfSession: json['number_of_session'],
+      days: json['days']??[],
+      sessionPerMonth: json['session_per_month'],
+      hours: json['hours'],
+      duration: json['duration'],
+      mode: json['mode'],
+      status: json['status'],
+      createdOn: json['Created_ON'],
+      start_date: json['start_date'],
+      studentData: (json['student_data'] as List<dynamic>?)
+          ?.map((data) => StudentData.fromJson(data))
+          .toList(),
     );
   }
 }
 
-// class StudentData {
-//   final String? name;
-//   final List<Subject>? subjects;
-//
-//   StudentData({this.name,this.subjects});
-//
-//   factory StudentData.fromJson(Map<String, dynamic> json) {
-//     return StudentData(
-//       name: json['name']??'',
-//       subjects: (json['subject']??{})
-//           .map((subject) => Subject.fromJson(subject))
-//           .toList(),
-//     );
-//   }
-// }
-//
-// class Subject {
-//   final String? title;
-//   final String? name;
-//
-//   Subject({ this.title, this.name});
-//
-//   factory Subject.fromJson(Map<String, dynamic> json) {
-//     return Subject(
-//       title: json['title']??'',
-//       name: json['name']??'',
-//     );
-//   }
-// }
+
+class StudentData {
+  final int id;
+  final String? name;
+  final List<Subject>? subjects;
+
+  StudentData({
+    required this.id,
+    this.name,
+    this.subjects,
+  });
+
+  factory StudentData.fromJson(Map<String, dynamic> json) {
+    return StudentData(
+      id: json['id'],
+      name: json['name'],
+      subjects: (json['subject'] as List<dynamic>?)
+          ?.map((subject) => Subject.fromJson(subject))
+          .toList(),
+    );
+  }
+}
+
+class Subject {
+  final String? title;
+  final String? name;
+
+  Subject({
+    this.title,
+    this.name,
+  });
+
+  factory Subject.fromJson(Map<String, dynamic> json) {
+    return Subject(
+      title: json['titile'],
+      name: json['name'],
+    );
+  }
+}

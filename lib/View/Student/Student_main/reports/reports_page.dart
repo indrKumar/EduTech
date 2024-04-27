@@ -6,7 +6,6 @@ import '../../../../theme/custom_text_style.dart';
 import '../../../../theme/theme_helper.dart';
 import '../../../../utils/image_constant.dart';
 import '../../../widgets/custom_elevated_button.dart';
-import '../../../widgets/custom_icon_button.dart';
 import '../../../widgets/custom_image_view.dart';
 
 class ReportsPageS extends StatefulWidget {
@@ -167,24 +166,22 @@ class _ReportsPageSState extends State<ReportsPageS> {
                     _buildReporthistory(
                         decoration: BoxDecoration(
                             color: const Color(0xFFD53B3B).withOpacity(0.10),
-                            borderRadius:  BorderRadius.only(
+                            borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(40.h),
                               bottomRight: Radius.circular(40.h),
-                            )
-                        ),
+                            )),
                         title: "Opportunities",
                         subTitle:
                             "Conceptual learning is strong for Maths and Science both",
                         icon: "assets/images/opportunity.png"),
                     SizedBox(height: 46.h),
                     _buildReporthistory(
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFD53B3B).withOpacity(0.10),
-                        borderRadius:  BorderRadius.only(
-                            topLeft: Radius.circular(40.h),
-                            bottomRight: Radius.circular(40.h),
-                          )
-                      ),
+                        decoration: BoxDecoration(
+                            color: const Color(0xFFD53B3B).withOpacity(0.10),
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(40.h),
+                              bottomRight: Radius.circular(40.h),
+                            )),
                         title: "Threats",
                         subTitle:
                             "Conceptual learning is strong for Maths and Science both",
@@ -196,7 +193,11 @@ class _ReportsPageSState extends State<ReportsPageS> {
                         padding: EdgeInsets.only(left: 19.h),
                         child: const Text(
                           "Academic Report",
-                          style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.black,fontFamily: "Montserrat"),
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              fontFamily: "Montserrat"),
                         ),
                       ),
                     ),
@@ -207,15 +208,23 @@ class _ReportsPageSState extends State<ReportsPageS> {
                     SizedBox(height: 67.h),
                     SizedBox(
                       child: RichText(
-                        text:  TextSpan(
+                        text: TextSpan(
                           children: [
                             const TextSpan(
                               text: "Strategic Thinking and Road mapping ",
-                              style: TextStyle(fontFamily: "Montserrat",fontSize: 18,fontWeight: FontWeight.bold,color: Colors.black),
+                              style: TextStyle(
+                                  fontFamily: "Montserrat",
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                             TextSpan(
                               text: "Short-term Goal  ( 20-25 days )",
-                              style: TextStyle(fontFamily: "Montserrat",fontSize: 18,fontWeight: FontWeight.bold,color:theme.primaryColor),
+                              style: TextStyle(
+                                  fontFamily: "Montserrat",
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: theme.primaryColor),
                             ),
                           ],
                         ),
@@ -225,8 +234,7 @@ class _ReportsPageSState extends State<ReportsPageS> {
                     SizedBox(height: 14.h),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20.h),
-                      child: _buildTick(
-                      ),
+                      child: _buildTick(),
                     ),
                     SizedBox(height: 58.h),
                     SizedBox(
@@ -267,10 +275,14 @@ class _ReportsPageSState extends State<ReportsPageS> {
                             ),
                             Image(
                                 image: AssetImage(
-                                  ImageConstant.aroPng,
-                                )),
+                              ImageConstant.aroPng,
+                            )),
                             CustomElevatedButton(
-                              buttonTextStyle: const TextStyle(fontWeight: FontWeight.bold,fontSize: 12,fontFamily: "Montserrat",color: Colors.white),
+                              buttonTextStyle: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 12,
+                                  fontFamily: "Montserrat",
+                                  color: Colors.white),
                               height: 42.h,
                               width: 195.w,
                               text: "Contact Us",
@@ -282,13 +294,23 @@ class _ReportsPageSState extends State<ReportsPageS> {
                       ),
                     ),
                     SizedBox(height: 14.h),
-                    const Text("Or",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 12,fontFamily: "Montserrat"),),
+                    const Text(
+                      "Or",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                          fontFamily: "Montserrat"),
+                    ),
                     SizedBox(height: 14.h),
                     CustomElevatedButton(
                       height: 42.h,
                       width: 195.w,
                       text: "Consult With Coach",
-                      buttonTextStyle: const TextStyle(fontWeight: FontWeight.bold,fontSize: 12,fontFamily: "Montserrat",color: Colors.white),
+                      buttonTextStyle: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                          fontFamily: "Montserrat",
+                          color: Colors.white),
                     ),
                   ],
                 ),
@@ -417,15 +439,7 @@ class _ReportsPageSState extends State<ReportsPageS> {
           Expanded(
             child: Row(
               children: [
-                CustomIconButton(
-                  height: 60,
-                  width: 60,
-                  padding: EdgeInsets.all(8.w),
-                  // decoration: IconButtonStyleHelper.outlineBlackTL10,
-                  // child: CustomImageView(
-                  //   imagePath: ImageConstant.imgComputer,
-                  // ),
-                ),
+                Image.asset("assets/images/7:10.png"),
                 Flexible(
                   child: Padding(
                     padding: EdgeInsets.only(
@@ -644,190 +658,196 @@ class _ReportsPageSState extends State<ReportsPageS> {
             ],
           ),
         ));
-
   }
 
 // /// Section Widget
-Widget _buildAveragePercentage() {
-  return Container(
-    margin: EdgeInsets.symmetric(horizontal: 20.w),
-    padding: EdgeInsets.symmetric(
-      horizontal: 17.w,
-      vertical: 20.h,
-    ),
-    decoration: AppDecoration.outlineGray30003.copyWith(
-      borderRadius: BorderRadiusStyle.roundedBorder10,
-    ),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-       Expanded(
-         child: Row(children: [
-           CustomImageView(
-             imagePath: "assets/images/percentage.png",
-             width: 36.w,
-             margin: EdgeInsets.symmetric(vertical: 1.h),
-           ),
-           Flexible(
-             child: Container(
-               margin: EdgeInsets.only(
-                 left: 13.w,
-                 top: 1.h,
-               ),
-               child: Text(
-                 "Average percentage of all the subjects",
-                 maxLines: 2,
-                 overflow: TextOverflow.ellipsis,
-                 style: theme.textTheme.bodyMedium,
-               ),
-             ),
-           ),
-         ],),
-       ),
-        Padding(
-          padding: EdgeInsets.fromLTRB(30.w, 6.h, 2.w, 7.h),
-          child: Text(
-            "78.5 %",
-            style: CustomTextStyles.titleLargeBold,
-          ),
-        ),
-      ],
-    ),
-  );
-}
-
-Widget _buildSubject() {
-  return Container(
-    margin: EdgeInsets.symmetric(horizontal: 20.w),
-    padding: EdgeInsets.symmetric(
-      horizontal: 9.w,
-      vertical: 13.h,
-    ),
-    decoration: AppDecoration.outlineGray300031.copyWith(
-      borderRadius: BorderRadiusStyle.roundedBorder10,
-    ),
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: EdgeInsets.only(right: 20.w),
-          child: Row(
-            children: [
-              Text(
-                "Subject",
-                style: CustomTextStyles.labelLargeBlack900Bold,
-              ),
-              const Spacer(),
-              Text(
-                "Total Questions",
-                style: CustomTextStyles.labelLargeBlack900Bold,
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 21.w),
-                child: Text(
-                  "Total Marks",
-                  style: CustomTextStyles.labelLargeBlack900Bold,
-                ),
-              ),
-            ],
-          ),
-        ),
-        SizedBox(height: 27.h),
-        Padding(
-          padding: EdgeInsets.only(right: 63.w),
-          child: _buildScience(
-            science: "Maths",
-            eight: "07",
-            oneThousandTwoHundredTwenty: "17/20",
-          ),
-        ),
-      ],
-    ),
-  );
-}
-
-Widget _buildScience({
-  required String science,
-  required String eight,
-  required String oneThousandTwoHundredTwenty,
-}) {
-  return Row(
-    children: [
-      Text(
-        science,
-        style: theme.textTheme.bodySmall!.copyWith(
-          color: appTheme.black900,
-        ),
+  Widget _buildAveragePercentage() {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 20.w),
+      padding: EdgeInsets.symmetric(
+        horizontal: 17.w,
+        vertical: 20.h,
       ),
-      const Spacer(
-        flex: 40,
+      decoration: AppDecoration.outlineGray30003.copyWith(
+        borderRadius: BorderRadiusStyle.roundedBorder10,
       ),
-      Text(
-        eight,
-        style: theme.textTheme.bodySmall!.copyWith(
-          color: appTheme.black900,
-        ),
-      ),
-      const Spacer(
-        flex: 59,
-      ),
-      Text(
-        oneThousandTwoHundredTwenty,
-        style: theme.textTheme.bodySmall!.copyWith(
-          color: appTheme.black900,
-        ),
-      ),
-    ],
-  );
-}
-//
-Widget _buildTick({ String? description}) {
-  return Container(
-    padding: EdgeInsets.symmetric(
-      horizontal: 20.w,
-      vertical: 22.h,
-    ),
-    decoration: AppDecoration.fillLightblueA400.copyWith(
-      borderRadius: BorderRadiusStyle.roundedBorder10,
-    ),
-    child: ListView.builder(
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: 5,
-      shrinkWrap: true,
-      itemBuilder: (context, index) =>  Row(
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Padding(
-            padding: EdgeInsets.only(
-              top: 7.h,
-              bottom: 22.h,
-            ),
-            child: const Icon(Icons.check_circle,color: Colors.green,weight: 18,),
-          ),
           Expanded(
-            child: Container(
-              width: 276.w,
-              margin: EdgeInsets.only(
-                left: 16.w,
-                top: 5.h,
-              ),
-              child: Text(
-                "Set the deadlines to cover NCERT along with refresher and different publications",
-                maxLines: 12,
-                overflow: TextOverflow.ellipsis,
-                style: theme.textTheme.bodyLarge!.copyWith(
-                  color: appTheme.black900,
+            child: Row(
+              children: [
+                CustomImageView(
+                  imagePath: "assets/images/percentage.png",
+                  width: 36.w,
+                  margin: EdgeInsets.symmetric(vertical: 1.h),
                 ),
-              ),
+                Flexible(
+                  child: Container(
+                    margin: EdgeInsets.only(
+                      left: 13.w,
+                      top: 1.h,
+                    ),
+                    child: Text(
+                      "Average percentage of all the subjects",
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.bodyMedium,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(30.w, 6.h, 2.w, 7.h),
+            child: Text(
+              "78.5 %",
+              style: CustomTextStyles.titleLargeBold,
             ),
           ),
         ],
       ),
-    ),
-  );
-}
+    );
+  }
+
+  Widget _buildSubject() {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 20.w),
+      padding: EdgeInsets.symmetric(
+        horizontal: 9.w,
+        vertical: 13.h,
+      ),
+      decoration: AppDecoration.outlineGray300031.copyWith(
+        borderRadius: BorderRadiusStyle.roundedBorder10,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.only(right: 20.w),
+            child: Row(
+              children: [
+                Text(
+                  "Subject",
+                  style: CustomTextStyles.labelLargeBlack900Bold,
+                ),
+                const Spacer(),
+                Text(
+                  "Total Questions",
+                  style: CustomTextStyles.labelLargeBlack900Bold,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 21.w),
+                  child: Text(
+                    "Total Marks",
+                    style: CustomTextStyles.labelLargeBlack900Bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 27.h),
+          Padding(
+            padding: EdgeInsets.only(right: 63.w),
+            child: _buildScience(
+              science: "Maths",
+              eight: "07",
+              oneThousandTwoHundredTwenty: "17/20",
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildScience({
+    required String science,
+    required String eight,
+    required String oneThousandTwoHundredTwenty,
+  }) {
+    return Row(
+      children: [
+        Text(
+          science,
+          style: theme.textTheme.bodySmall!.copyWith(
+            color: appTheme.black900,
+          ),
+        ),
+        const Spacer(
+          flex: 40,
+        ),
+        Text(
+          eight,
+          style: theme.textTheme.bodySmall!.copyWith(
+            color: appTheme.black900,
+          ),
+        ),
+        const Spacer(
+          flex: 59,
+        ),
+        Text(
+          oneThousandTwoHundredTwenty,
+          style: theme.textTheme.bodySmall!.copyWith(
+            color: appTheme.black900,
+          ),
+        ),
+      ],
+    );
+  }
+
+//
+  Widget _buildTick({String? description}) {
+    return Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: 20.w,
+        vertical: 22.h,
+      ),
+      decoration: AppDecoration.fillLightblueA400.copyWith(
+        borderRadius: BorderRadiusStyle.roundedBorder10,
+      ),
+      child: ListView.builder(
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: 5,
+        shrinkWrap: true,
+        itemBuilder: (context, index) => Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(
+                top: 7.h,
+                bottom: 22.h,
+              ),
+              child: const Icon(
+                Icons.check_circle,
+                color: Colors.green,
+                weight: 18,
+              ),
+            ),
+            Expanded(
+              child: Container(
+                width: 276.w,
+                margin: EdgeInsets.only(
+                  left: 16.w,
+                  top: 5.h,
+                ),
+                child: Text(
+                  "Set the deadlines to cover NCERT along with refresher and different publications",
+                  maxLines: 12,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.bodyLarge!.copyWith(
+                    color: appTheme.black900,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }

@@ -1,11 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
+
 import 'package:edushalaacademy/utils/store_local_data.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+
 import '../utils/app_url.dart';
 
 class AuthController extends GetxController {
@@ -394,7 +395,7 @@ class AuthController extends GetxController {
   }
 
 
-  static Future<void> refreshAccessToken() async {
+   Future<void> refreshAccessToken() async {
 
     try {
       String refreshToken = await getRefreshToken();

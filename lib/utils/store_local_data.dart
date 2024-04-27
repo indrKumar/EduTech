@@ -40,7 +40,8 @@ class SharedPref {
       SPECIALIZATION = "key_spe",
       DOB = "key_dob",
       HOBBY = "key_hobbey",
-      TYPOFUSER = "type_user";
+      TYPOFUSER = "type_user",
+      STUDENTID = "student_idr";
 
 
       static

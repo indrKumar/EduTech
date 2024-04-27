@@ -1,29 +1,8 @@
-import 'package:edushalaacademy/View/Student/Student_main/main_actity_student.dart';
-import 'package:edushalaacademy/View/Student/add_bassic_details.dart';
-import 'package:edushalaacademy/View/Student/complte_onboarding_st.dart';
-import 'package:edushalaacademy/View/Student/contact_us_counsller.dart';
-import 'package:edushalaacademy/View/Student/linup_up_tutor.dart';
-import 'package:edushalaacademy/View/Student/pakage_details_page.dart';
-import 'package:edushalaacademy/View/Student/pending_inquries.dart';
-import 'package:edushalaacademy/View/Student/procced_payment_page.dart';
-import 'package:edushalaacademy/View/Student/tutor_profile.dart';
-import 'package:edushalaacademy/View/onBoarding/kyc_2/add_edit_qualification.dart';
-import 'package:edushalaacademy/View/onBoarding/kyc_2/edu_qualification_list.dart';
-import 'package:edushalaacademy/View/onBoarding/kyc_3/add_teaching_locations.dart';
-import 'package:edushalaacademy/View/onBoarding/kyc_4/add_new_teaching_ex.dart';
-import 'package:edushalaacademy/View/onBoarding/kyc_4/kyc_spep_one.dart';
-import 'package:edushalaacademy/View/onBoarding/kyc_4/personal_info.dart';
-import 'package:edushalaacademy/View/onBoarding/kyc_4/virtual_interview_link_page.dart';
-import 'package:edushalaacademy/View/onBoarding/kyc_step_1/category_list.dart';
-import 'package:edushalaacademy/View/onBoarding/kyc_step_1/main_cat.dart';
+import 'package:edushalaacademy/View/Student/Student_main/profile/profile_s.dart';
 import 'package:edushalaacademy/View/splash.dart';
-import 'package:edushalaacademy/binding/splash_binding.dart';
-import 'package:edushalaacademy/texttt.dart';
 import 'package:get/get.dart';
 
-import '../View/Student/Student_main/attendance/attandance.dart';
-import '../View/Student/demo_schedule_link.dart';
-import '../View/onBoarding/kyc_4/experience_list.dart';
+import '../View/Profile/profile.dart';
 // import '../presentation/app_navigation_screen/binding/app_navigation_binding.dart';
 
 class AppRoutes {
@@ -660,7 +639,9 @@ class AppRoutes {
             // const LinedUpTutorsScreen()
             //     const MainActivityStudent()
             // MainActivityStudent()
-            const AttendanceTab()
+        // AddEditQualifications()
+            const SplashScreen()
+        // const ProfilePage()
         // bindings: [
         //   SplashBinding(),
         // ],

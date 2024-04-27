@@ -127,6 +127,10 @@ class _SignUpSendOTPState extends State<SignUpSendOTP> {
       id: 2, // Change this value to make it unique
       title: "Offline",
     ),
+    SelectionPopupModel(
+      id: 3, // Change this value to make it unique
+      title: "Online/Offline",
+    ),
   ];
   TextEditingController stateController = TextEditingController();
   List<SelectionPopupModel> listOfCities = [
@@ -547,6 +551,7 @@ class _SignUpSendOTPState extends State<SignUpSendOTP> {
         : CustomElevatedButton(
             onPressed: () {
               if (_formKey.currentState!.validate()) {
+                
                 myController.showCircularProgress();
                 apiController
                     .sendOtp(contactNo: widget.number.toString(), newUser: true)

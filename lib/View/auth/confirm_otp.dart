@@ -1,6 +1,6 @@
+import 'package:edushalaacademy/View/Student/Student_main/main_actity_student.dart';
 import 'package:edushalaacademy/View/Student/add_student_start_screen.dart';
 import 'package:edushalaacademy/View/auth/signup_send_otp.dart';
-import 'package:edushalaacademy/View/main_actity.dart';
 import 'package:edushalaacademy/View/onBoarding/1st_overview_screen.dart';
 import 'package:edushalaacademy/View/widgets/custom_pin_code_text_field.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +19,6 @@ import '../../utils/store_local_data.dart';
 import '../widgets/back_card.dart';
 import '../widgets/custom_elevated_button.dart';
 import '../widgets/custom_icon_button.dart';
-import '../widgets/custom_image_view.dart';
 
 class OtpLoginScreen extends StatefulWidget {
   bool? signUp = false;
@@ -275,7 +274,7 @@ final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
                               true,
                             );
                             navigateBasedOnStatus();
-                            Get.offAll(() => const MainActivity());
+                            Get.offAll(() => const MainActivityStudent());
                           } else {
                             Fluttertoast.showToast(msg: "Please Signup First!");
                             // Navigator.push(

@@ -24,7 +24,7 @@ class AppbarSubtitleEight extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        onTap!.call();
+        onTap?.call();
       },
       child: Padding(
         padding: margin ?? EdgeInsets.zero,

@@ -1,8 +1,4 @@
-import 'dart:async';
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 
@@ -78,10 +74,10 @@ class _FiltersState extends State<Filters> {
   @override
   Widget build(BuildContext context) {
 
-    var inputLabelStyle = const TextStyle(fontSize: 10,height: 0,color: const Color(0xff202020),);
+    // var inputLabelStyle = const TextStyle(fontSize: 10,height: 0,color: const Color(0xff202020),);
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    SfRangeValues _values = SfRangeValues(40.0, 80.0);
+    // SfRangeValues _values = SfRangeValues(40.0, 80.0);
 
 
 

@@ -137,9 +137,27 @@ var subCategoryIds;
         // void Function()? onTap,
         required int index}) {
     var subCategory = _homeController.subCategories[index];
+
     print("CJECJN${_homeController.subCategories[index].logo?.isNotEmpty}");
+    bool isSelected = kycController.selectedSubCategories.contains(subCategory);
+
+    void handleTap() {
+      setState(() {
+        if (isSelected) {
+          kycController.selectedSubCategories.remove(subCategory);
+        } else {
+          kycController.selectedSubCategories.add(subCategory);
+          // Add only one category
+          if (kycController.selectedSubCategories.length > 1) {
+            kycController.selectedSubCategories.removeWhere((item) => item != subCategory);
+          }
+        }
+      });
+    }
+
     return GestureDetector(
     onTap: () {
+      handleTap();
       // int newIndex = (_homeController.selectedIndex.value + 1) % _homeController.subCategories.length;
       // _homeController.selectedIndex.value = newIndex;
       subCategoryIds == null;

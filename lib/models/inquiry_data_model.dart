@@ -1,30 +1,31 @@
 class InquiryDataModel {
   final int id;
-  final String message;
-  final String state;
-  final String city;
-  final String location;
-  final Subjects subjects;
-  final String status;
-  final List<String> statusList;
+  final String? message;
+  final String? state;
+  final String? city;
+  final String? location;
+  final Subjects? subjects;
+  final String? status;
+  final List<String>? statusList;
 
   InquiryDataModel({
+
     required this.id,
-    required this.message,
-    required this.state,
-    required this.city,
-    required this.location,
-    required this.subjects,
-    required this.status,
-    required this.statusList,
+     this.message,
+     this.state,
+     this.city,
+     this.location,
+     this.subjects,
+     this.status,
+     this.statusList,
   });
 
   factory InquiryDataModel.fromJson(Map<String, dynamic> json) {
     return InquiryDataModel(
       id: json['id'] ?? 0,
+      message: json['message'] ?? '',
       state: json['state'] ?? '',
       city: json['city'] ?? '',
-      message: json["message"] ?? '',
       location: json['location'] ?? '',
       subjects: Subjects.fromJson(json['subjects'] ?? {}),
       status: json['status'] ?? '',
